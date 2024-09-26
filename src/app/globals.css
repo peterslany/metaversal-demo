@@ -3,25 +3,43 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --color-background: #ffffff;
+  --color-background-dark: #f9fafa;
+  --color-foreground: #171717;
+  --color-primary:  #4426d9;
+  --color-primary-light: #ECE9FB;
+  --color-primary-dark: #361fad;
+  --color-secondary: #811ab8;
+  --color-tertiary: #ff0073;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-foreground);
+  background: var(--color-background-dark);
+  @apply font-regular;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .primary-gradient {
+    background: linear-gradient(180deg, var(--color-tertiary) -114.9%, var(--color-secondary) -51.51%, var(--color-primary) 100%);
+  }
+  .secondary-gradient {
+    background: linear-gradient(180deg, var(--color-tertiary) -85.89%, var(--color-secondary) 34.45%, var(--color-primary) 100%);
+  }
+
+  .skeleton {
+    /* TODO */
   }
 }
