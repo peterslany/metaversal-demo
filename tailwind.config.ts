@@ -32,7 +32,7 @@ const config: Config = {
         regular: [
           "var(--font-roboto-flex)",
           {
-            fontVariationSettings: '"wght" 500',
+            fontVariationSettings: '"wght" 400, "wdth" 75',
           },
         ],
       },

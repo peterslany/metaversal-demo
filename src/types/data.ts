@@ -24,4 +24,8 @@ interface Post {
   };
 }
 
-export type { Post, User };
+interface PostExt extends Post {
+  user: User;
+}
+
+export type { Post, User, PostExt };
