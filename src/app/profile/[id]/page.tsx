@@ -51,13 +51,13 @@ const ProfilePage = async ({ params }: ProfilePageParams) => {
             <h1 className="text-2xl">
               {user.firstName} {user.lastName}
             </h1>
-            <p className="text-gray-600 flex gap-2 items-center">
+            <div className="text-gray-600 flex gap-2 items-center">
               @{user.username}{" "}
               <div className="flex gap-1">
                 <MapPinIcon width={20} />
                 {user.address.state}, {user.address.country}
               </div>
-            </p>
+            </div>
             <div className="rounded-xl bg-blue-100 text-blue-600 text-md py-1 px-3 font-heading">
               {user.company.department}
             </div>

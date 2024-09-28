@@ -1,3 +1,4 @@
+import { TopBar } from "@/components";
 import type { Metadata } from "next";
 import { Roboto_Flex } from "next/font/google";
 import "./globals.css";
@@ -25,8 +26,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${robotoFlex.variable} antialiased`}>
         <QueryProvider>
-        <div className="flex flex-col items-center">
-          <div className="max-w-3xl p-4">{children}</div></div>
+          <div className="flex flex-col items-center">
+            <TopBar />
+            <div className="max-w-3xl p-4">{children}</div>
+          </div>
         </QueryProvider>
       </body>
     </html>

@@ -45,7 +45,7 @@ const RecentPosts = ({ initialData, userId }: RecentPostsProps) => {
       {isFetchingNextPage ? (
         <Spinner />
       ) : (
-        hasNextPage && <p className="h-4"></p>
+        hasNextPage && <p className="h-8"></p>
       )}
       <div ref={ref} />
     </div>

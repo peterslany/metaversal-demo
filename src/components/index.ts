@@ -4,3 +4,4 @@ export * from "./post-card";
 export * from "./profile-thumbnail";
 export * from "./recent-posts";
 export * from "./spinner";
+export * from "./top-bar";
