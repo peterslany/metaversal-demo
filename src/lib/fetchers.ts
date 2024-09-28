@@ -50,7 +50,8 @@ const getSuggestedPosts = async () => {
   return extendPostsWithUserData(data.posts);
 };
 
-// NOTE: Picking the users to follow based on
+// NOTE: Picking the users to follow based on their height as there is no
+//       data field for post count on User entity
 const getTopUsers = async () => {
   const data = await fetchDummyAPI<{ users: Array<User> }>("/users", {
     sortBy: "height",
@@ -60,4 +61,12 @@ const getTopUsers = async () => {
   return data.users;
 };
 
-export { getSuggestedPosts, getTopUsers };
+const getRecentPosts = async (page: number = 0) => {
+  const data = await fetchDummyAPI<{ posts: Array<Post> }>("/posts", {
+    limit: 5,
+    skip: page * 5,
+  });
+  return extendPostsWithUserData(data.posts);
+};
+
+export { getSuggestedPosts, getTopUsers, getRecentPosts };
