@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Implementation notes
+Skeletons were not implemented because most of the application content is server-side rendered. Only place where loading state can be seen is at the recent posts feed -- where infinite scroll feature is utilized. 
 
-## Getting Started
+Requests are automatically cached by Next.js and React Query.
 
-First, run the development server:
+Error states are handled by showing Warning sign and information about unexpected situation.
+
+
+There are few small changes in comparison with the specification. These are the result of API not exposing all the requested data points. Namely:
+- `/users` endpoint does not return any aggregated data about user's post activity: total count of likes and post is therefore not available unless all the user posts were fetched which would not be scalable nor efficient. If this was production situation I would suggest extending API endpoints.
+- `/users` endpoint does not allow to fetch multiple users by ids, but since this data is essential for the correct functionality of the app I fetched them one-by-one. Ideally, this would be handled on the back end side by extending the API as well.
+
+
+## Live demo
+
+This demo is deployed at [metaversal-demo.vercel.app](https://metaversal-demo.vercel.app/).
+
+## How to run this demo.
+
+1. Clone this repository.
+2. Install the dependencies using your preferred package manager. I am using pnpm:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm i
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. After the dependencies are installed, you can run the app locally using the `dev` command.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Now the application is running at [port 3000](http://localhost:3000/)
