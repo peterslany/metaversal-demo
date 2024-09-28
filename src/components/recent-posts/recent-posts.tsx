@@ -32,7 +32,7 @@ const RecentPosts = ({ initialData, userId }: RecentPostsProps) => {
     if (inView) {
       fetchNextPage();
     }
-  }, [inView]);
+  }, [inView, fetchNextPage]);
 
   return (
     <div>

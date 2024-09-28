@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { Spinner } from "../spinner";
 
 type CardProps = {
   children: ReactNode;

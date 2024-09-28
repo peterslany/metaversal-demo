@@ -1,5 +1,5 @@
 import { Card, PostCard, ProfileThumbnail, RecentPosts } from "@/components";
-import { getRecentPosts, getSuggestedPosts, getTopUsers } from "@/lib/fetchers";
+import { getRecentPosts, getSuggestedPosts, getTopUsers } from "@/lib";
 
 const HomePage = async () => {
   const suggestedPosts = await getSuggestedPosts();
@@ -7,7 +7,6 @@ const HomePage = async () => {
   const recentPosts = await getRecentPosts();
   return (
       <main>
-        {/* Server-side rendered. */}
         <h1 className="text-2xl my-2">Suggested Posts</h1>
         <div className="flex flex-col gap-4">
           {suggestedPosts.map((post) => (

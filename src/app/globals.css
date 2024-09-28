@@ -6,12 +6,11 @@
   --color-background: #ffffff;
   --color-background-dark: #f9fafa;
   --color-foreground: #171717;
-  --color-primary:  #4426d9;
-  --color-primary-light: #ECE9FB;
+  --color-primary: #4426d9;
+  --color-primary-light: #ece9fb;
   --color-primary-dark: #361fad;
   --color-secondary: #811ab8;
   --color-tertiary: #ff0073;
-
 }
 
 body {
@@ -33,13 +32,19 @@ body {
 
 @layer utilities {
   .primary-gradient {
-    background: linear-gradient(180deg, var(--color-tertiary) -114.9%, var(--color-secondary) -51.51%, var(--color-primary) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--color-tertiary) -114.9%,
+      var(--color-secondary) -51.51%,
+      var(--color-primary) 100%
+    );
   }
   .secondary-gradient {
-    background: linear-gradient(180deg, var(--color-tertiary) -85.89%, var(--color-secondary) 34.45%, var(--color-primary) 100%);
-  }
-
-  .skeleton {
-    /* TODO */
+    background: linear-gradient(
+      180deg,
+      var(--color-tertiary) -85.89%,
+      var(--color-secondary) 34.45%,
+      var(--color-primary) 100%
+    );
   }
 }

@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { Button, Card, RecentPosts } from "@/components";
-import { getRecentPosts, getUserById } from "@/lib/fetchers";
-import { MapIcon, MapPinIcon } from "@heroicons/react/24/outline";
+import { getRecentPosts, getUserById } from "@/lib";
+import {
+  ExclamationTriangleIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/outline";
 
 interface ProfilePageParams {
   params: {
@@ -12,8 +15,9 @@ interface ProfilePageParams {
 const ProfileNotFound = ({ id }: { id: string }) => (
   <Card>
     <div className="text-center p-2">
-      <h1 className="text-xl">Error:</h1>
-      <p>Profile for user with id {id} was not found.</p>
+      <ExclamationTriangleIcon />
+      <h1 className="text-xl">Error</h1>
+      <p>Profile for user with id  &quot;{id}&quot; was not found.</p>
     </div>
   </Card>
 );
@@ -69,11 +73,13 @@ const ProfilePage = async ({ params }: ProfilePageParams) => {
                           would be forced to fetch all the posts of the user and do
                           the calculation on client side.
                 */}
-                <h2 className="leading-3">{Math.round(Math.random()*557)}</h2>
+                <h2 className="leading-3">{Math.round(Math.random() * 557)}</h2>
                 <div className="text-gray-600 text-sm">POSTS</div>
               </div>
               <div className="flex flex-col">
-                <h2 className="leading-3">{Math.round(Math.random()*1337)}</h2>
+                <h2 className="leading-3">
+                  {Math.round(Math.random() * 1337)}
+                </h2>
                 <div className="text-gray-600 text-sm">LIKES</div>
               </div>
             </div>
