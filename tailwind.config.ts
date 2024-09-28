@@ -35,6 +35,12 @@ const config: Config = {
             fontVariationSettings: '"wght" 400, "wdth" 75',
           },
         ],
+        bold: [
+          "var(--font-roboto-flex)",
+          {
+            fontVariationSettings: '"wght" 800',
+          },
+        ],
       },
     },
   },

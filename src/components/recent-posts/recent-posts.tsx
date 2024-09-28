@@ -10,13 +10,14 @@ import { Spinner } from "../spinner";
 
 type RecentPostsProps = {
   initialData: Array<PostExt>;
+  userId?: string;
 };
 
-const RecentPosts = ({ initialData }: RecentPostsProps) => {
+const RecentPosts = ({ initialData, userId }: RecentPostsProps) => {
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage } =
     useInfiniteQuery<Array<PostExt>>({
-      queryKey: ["recent-posts"],
-      queryFn: ({ pageParam }) => getRecentPosts(pageParam as number),
+      queryKey: ["recent-posts", userId],
+      queryFn: ({ pageParam }) => getRecentPosts(pageParam as number, userId),
       initialData: { pages: [initialData], pageParams: [0] },
       initialPageParam: 0,
       getNextPageParam: (lastPage, allPages) =>
@@ -44,7 +45,7 @@ const RecentPosts = ({ initialData }: RecentPostsProps) => {
       {isFetchingNextPage ? (
         <Spinner />
       ) : (
-        hasNextPage && <p className="text-center">No more posts found.</p>
+        hasNextPage && <p className="h-4"></p>
       )}
       <div ref={ref} />
     </div>

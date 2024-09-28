@@ -3,7 +3,7 @@ import { Post, PostExt, User } from "@/types";
 const API_URL = "https://dummyjson.com";
 
 const fetchDummyAPI = async <T>(
-  endpoint: `/${string}`,
+  endpoint: string,
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   queryParams?: {},
   options: RequestInit = {}
@@ -26,19 +26,37 @@ const fetchDummyAPI = async <T>(
   throw new Error(`Fetching failed: ${error}`);
 };
 
-const getUserById = (id: string): Promise<User> => {
-  return fetchDummyAPI<User>(`/users/${id}`);
+const getUserById = async (id: string): Promise<User | null> => {
+  try {
+    const user = await fetchDummyAPI<User>(`/users/${id}`);
+    return user;
+  } catch {
+    return null;
+  }
 };
 
 // NOTE: Fetching users one-by-one as there is no clear way to fetch by
-//       multiple user ids.
+//       multiple user ids using the prescribed API.
 const extendPostsWithUserData = async (
   posts: Array<Post>
 ): Promise<Array<PostExt>> => {
   const users = await Promise.all(
     posts.map(({ userId }) => getUserById(userId))
   );
-  return posts.map((post, index) => ({ ...post, user: users[index] }));
+
+  const DELETED_USER: User = {
+    firstName: "Deleted Account",
+    lastName: "",
+    username: "deleted",
+    id: "deleted",
+    address: { state: "deleted", country: "deleted" },
+    company: { department: "deleted" },
+  };
+
+  return posts.map((post, index) => ({
+    ...post,
+    user: users[index] || DELETED_USER,
+  }));
 };
 
 const getSuggestedPosts = async () => {
@@ -61,12 +79,13 @@ const getTopUsers = async () => {
   return data.users;
 };
 
-const getRecentPosts = async (page: number = 0) => {
-  const data = await fetchDummyAPI<{ posts: Array<Post> }>("/posts", {
+const getRecentPosts = async (page: number = 0, userId?: string) => {
+  const endpoint = userId ? `/posts/user/${userId}` : "/posts";
+  const data = await fetchDummyAPI<{ posts: Array<Post> }>(endpoint, {
     limit: 5,
     skip: page * 5,
   });
   return extendPostsWithUserData(data.posts);
 };
 
-export { getSuggestedPosts, getTopUsers, getRecentPosts };
+export { getSuggestedPosts, getTopUsers, getRecentPosts, getUserById };

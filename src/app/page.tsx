@@ -1,13 +1,12 @@
 import { Card, PostCard, ProfileThumbnail, RecentPosts } from "@/components";
 import { getRecentPosts, getSuggestedPosts, getTopUsers } from "@/lib/fetchers";
 
-export default async function Home() {
+const HomePage = async () => {
   const suggestedPosts = await getSuggestedPosts();
   const topUsers = await getTopUsers();
   const recentPosts = await getRecentPosts();
   return (
-    <div className="flex flex-col items-center">
-      <main className="max-w-3xl p-4 ">
+      <main>
         {/* Server-side rendered. */}
         <h1 className="text-2xl my-2">Suggested Posts</h1>
         <div className="flex flex-col gap-4">
@@ -25,6 +24,7 @@ export default async function Home() {
         </div>
         <RecentPosts initialData={recentPosts} />
       </main>
-    </div>
   );
-}
+};
+
+export default HomePage;

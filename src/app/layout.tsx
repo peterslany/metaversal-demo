@@ -24,7 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${robotoFlex.variable} antialiased`}>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+        <div className="flex flex-col items-center">
+          <div className="max-w-3xl p-4">{children}</div></div>
+        </QueryProvider>
       </body>
     </html>
   );

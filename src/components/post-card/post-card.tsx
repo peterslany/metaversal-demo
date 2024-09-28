@@ -16,7 +16,7 @@ const PostCard = ({ post }: PostCardProps) => {
   return (
     <Card
       footer={
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-6 p-2 px-1 items-center">
           <div className="flex text-gray-600 gap-1">
             <HandThumbUpIcon className="w-5" />
             {post.reactions.likes}
